@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "643046244665",
+    "project_id": "ielts-cat",
+    "storage_bucket": "ielts-cat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643046244665:android:9e3232c79b01bf4714a8e8",
+        "android_client_info": {
+          "package_name": "com.sancbyt.ielts_cat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGci7ZdduSDd-oSEoIhX8-ZZ-Cay17b8E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
