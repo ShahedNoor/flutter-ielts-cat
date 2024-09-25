@@ -8,8 +8,10 @@ import '../helper/helper_functions.dart';
 
 class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
+  final void Function()? onForgotTap;
 
-  const RegisterPage({super.key, required this.onTap});
+  const RegisterPage(
+      {super.key, required this.onTap, required this.onForgotTap});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -64,7 +66,16 @@ class _RegisterPageState extends State<RegisterPage> {
 
         // Display error message to user
         if (currentContext.mounted) {
-          showErrorMessageToUser(e.code, currentContext);
+          showErrorMessageToUser(
+              usernameController.text.isEmpty ||
+                      emailController.text.isEmpty ||
+                      passwordController.text.isEmpty ||
+                      confirmPasswordController.text.isEmpty
+                  ? "Please complete the entire form and try again – none of the fields can be left empty."
+                  : e.code == "invalid-email"
+                      ? "Looks like the email field is empty, or the email you entered isn't quite right."
+                      : e.code,
+              currentContext);
         }
       }
     }
@@ -87,6 +98,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Media query
+    final width = MediaQuery.sizeOf(context).width;
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: Center(
@@ -97,14 +111,13 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Logo
-                Icon(
-                  Icons.person,
-                  size: 80,
-                  color: Theme.of(context).colorScheme.inversePrimary,
+                Image.asset(
+                  "assets/images/welcome.gif",
+                  width: width / 3,
                 ),
 
                 const SizedBox(
-                  height: 25,
+                  height: 15,
                 ),
 
                 // App name
@@ -184,10 +197,13 @@ class _RegisterPageState extends State<RegisterPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      "Forgot Password",
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                    GestureDetector(
+                      onTap: widget.onForgotTap,
+                      child: Text(
+                        "Forgot Password",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                        ),
                       ),
                     ),
                   ],

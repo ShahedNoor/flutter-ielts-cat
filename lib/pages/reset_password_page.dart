@@ -5,21 +5,18 @@ import '../components/my_button.dart';
 import '../components/my_textfield.dart';
 import '../helper/helper_functions.dart';
 
-class LoginPage extends StatefulWidget {
+class ResetPasswordPage extends StatefulWidget {
   final void Function()? onTap;
-  final void Function()? onForgotTap;
 
-  const LoginPage({super.key, required this.onTap, required this.onForgotTap});
+  const ResetPasswordPage({super.key, required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<ResetPasswordPage> createState() => _ResetPasswordPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _ResetPasswordPageState extends State<ResetPasswordPage> {
   // Text controller
   final TextEditingController emailController = TextEditingController();
-
-  final TextEditingController passwordController = TextEditingController();
 
   // Current obscureText
   bool currentObscureText = true;
@@ -37,29 +34,35 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
-    // Try to sign in user
+    // Try to reset password
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: emailController.text);
 
       // Pop the circle progress indicator if still mounted
       if (currentContext.mounted) Navigator.pop(currentContext);
+      if (currentContext.mounted) emailController.clear();
+
+      // Display success message if the reset email was sent successfully
+      if (currentContext.mounted) {
+        showErrorMessageToUser(
+            "If an account exists for this email, a password reset email has been sent.",
+            currentContext);
+      }
     }
 
-    // If can't login then display an error
+    // If can't reset password then display an error
     on FirebaseAuthException catch (e) {
       // Pop the circle progress indicator if still mounted
       if (currentContext.mounted) Navigator.pop(currentContext);
 
       if (currentContext.mounted) {
         showErrorMessageToUser(
-          e.code == "invalid-email"
-              ? "Looks like the email field is empty, or the email you entered isn't quite right."
-              : e.code == "missing-password"
-                  ? "Oops, it seems like your password is missing!"
-                  : e.code == "invalid-credential"
-                      ? "Invalid credentials. Please double-check your information and try again."
-                      : e.code,
+          e.code == "missing-email"
+              ? "The email field is empty. Please enter your email to reset your password."
+              : e.code == "invalid-email"
+                  ? "The email you entered isn't quite right."
+                  : e.code,
           currentContext,
         );
       }
@@ -113,40 +116,8 @@ class _LoginPageState extends State<LoginPage> {
                   height: 10,
                 ),
 
-                // Password text field
-                MyTextField(
-                  hintText: "Password",
-                  obscureText: currentObscureText,
-                  suffixIcon: Icon(
-                    Icons.remove_red_eye,
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                  ),
-                  suffixIconOnPressed: () {
-                    setState(() {
-                      currentObscureText = !currentObscureText;
-                    });
-                  },
-                  controller: passwordController,
-                ),
-
                 const SizedBox(
                   height: 10,
-                ),
-
-                // Forgot password
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GestureDetector(
-                      onTap: widget.onForgotTap,
-                      child: Text(
-                        "Forgot Password",
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.inversePrimary,
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
 
                 const SizedBox(
@@ -154,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 // Login button
-                MyButton(text: "Login", onTap: loginUser),
+                MyButton(text: "Reset Password", onTap: loginUser),
 
                 const SizedBox(
                   height: 10,
@@ -164,14 +135,14 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Don't have an account?"),
+                    const Text("Password reset complete?"),
                     const SizedBox(
                       width: 10,
                     ),
                     GestureDetector(
                       onTap: widget.onTap,
                       child: const Text(
-                        "Register Here!",
+                        "Login Here!",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
