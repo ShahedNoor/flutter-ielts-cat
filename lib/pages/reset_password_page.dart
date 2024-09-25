@@ -62,7 +62,11 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               ? "The email field is empty. Please enter your email to reset your password."
               : e.code == "invalid-email"
                   ? "The email you entered isn't quite right."
-                  : e.code,
+                  : e.code == "network-request-failed"
+                      ? "Oops, it seems like there's an issue with your internet connection."
+                      : e.code == "channel-error"
+                          ? "The app failed to communicate with servers properly. This might happen due to an unstable internet connection or issues with server infrastructure."
+                          : e.code,
           currentContext,
         );
       }

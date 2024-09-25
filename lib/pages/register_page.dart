@@ -67,15 +67,20 @@ class _RegisterPageState extends State<RegisterPage> {
         // Display error message to user
         if (currentContext.mounted) {
           showErrorMessageToUser(
-              usernameController.text.isEmpty ||
-                      emailController.text.isEmpty ||
-                      passwordController.text.isEmpty ||
-                      confirmPasswordController.text.isEmpty
-                  ? "Please complete the entire form and try again – none of the fields can be left empty."
-                  : e.code == "invalid-email"
-                      ? "Looks like the email field is empty, or the email you entered isn't quite right."
-                      : e.code,
-              currentContext);
+            usernameController.text.isEmpty ||
+                    emailController.text.isEmpty ||
+                    passwordController.text.isEmpty ||
+                    confirmPasswordController.text.isEmpty
+                ? "Please complete the entire form and try again – none of the fields can be left empty."
+                : e.code == "invalid-email"
+                    ? "Looks like the email field is empty, or the email you entered isn't quite right."
+                    : e.code == "network-request-failed"
+                        ? "Oops, it seems like there's an issue with your internet connection."
+                        : e.code == "channel-error"
+                            ? "The app failed to communicate with servers properly. This might happen due to an unstable internet connection or issues with server infrastructure."
+                            : e.code,
+            currentContext,
+          );
         }
       }
     }

@@ -59,7 +59,11 @@ class _LoginPageState extends State<LoginPage> {
                   ? "Oops, it seems like your password is missing!"
                   : e.code == "invalid-credential"
                       ? "Invalid credentials. Please double-check your information and try again."
-                      : e.code,
+                      : e.code == "network-request-failed"
+                          ? "Oops, it seems like there's an issue with your internet connection."
+                          : e.code == "channel-error"
+                              ? "The app failed to communicate with servers properly. This might happen due to an unstable internet connection or issues with server infrastructure."
+                              : e.code,
           currentContext,
         );
       }
