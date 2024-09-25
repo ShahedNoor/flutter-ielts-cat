@@ -166,7 +166,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: passwordController,
                   suffixIcon: Icon(
                     Icons.remove_red_eye,
-                    color: Theme.of(context).colorScheme.inversePrimary,
+                    color: currentObscureText
+                        ? Theme.of(context).colorScheme.inversePrimary
+                        : Colors.black,
                   ),
                   suffixIconOnPressed: () {
                     setState(() {
@@ -185,7 +187,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: confirmPasswordController,
                   suffixIcon: Icon(
                     Icons.remove_red_eye,
-                    color: Theme.of(context).colorScheme.inversePrimary,
+                    color: currentObscureText
+                        ? Theme.of(context).colorScheme.inversePrimary
+                        : Colors.black,
                   ),
                   suffixIconOnPressed: () {
                     setState(() {

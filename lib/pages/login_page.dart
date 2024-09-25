@@ -123,7 +123,9 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: currentObscureText,
                   suffixIcon: Icon(
                     Icons.remove_red_eye,
-                    color: Theme.of(context).colorScheme.inversePrimary,
+                    color: currentObscureText
+                        ? Theme.of(context).colorScheme.inversePrimary
+                        : Colors.black,
                   ),
                   suffixIconOnPressed: () {
                     setState(() {
