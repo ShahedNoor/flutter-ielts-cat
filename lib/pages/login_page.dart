@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ielts_cat/components/square_login_tile.dart';
+import 'package:ielts_cat/services/auth_services.dart';
 
 import '../components/my_button.dart';
 import '../components/my_textfield.dart';
@@ -62,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                       : e.code == "network-request-failed"
                           ? "Oops, it seems like there's an issue with your internet connection."
                           : e.code == "channel-error"
-                              ? "The app failed to communicate with servers properly. This might happen due to an unstable internet connection or issues with server infrastructure."
+                              ? "The form may be empty, or the app could be having trouble connecting to the servers. This might be due to an unstable internet connection or server issues."
                               : e.code,
           currentContext,
         );
@@ -182,6 +184,41 @@ class _LoginPageState extends State<LoginPage> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(
+                  height: 10,
+                ),
+
+                const Text(
+                  "or",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+
+                const SizedBox(
+                  height: 10,
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SquareLoginTile(
+                      image: "assets/images/google-logo.png",
+                      onTap: () => AuthServices().signInWithGoogle(),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    SquareLoginTile(
+                      image: "assets/images/apple-logo.png",
+                      onTap: () {
+                        showErrorMessageToUser(
+                          "Login with Apple isn’t integrated yet.",
+                          context,
+                        );
+                      },
                     ),
                   ],
                 )

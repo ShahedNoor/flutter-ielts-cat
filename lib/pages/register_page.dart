@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 
 import '../components/my_button.dart';
 import '../components/my_textfield.dart';
+import '../components/square_login_tile.dart';
 import '../helper/helper_functions.dart';
+import '../services/auth_services.dart';
 
 class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
@@ -77,7 +79,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     : e.code == "network-request-failed"
                         ? "Oops, it seems like there's an issue with your internet connection."
                         : e.code == "channel-error"
-                            ? "The app failed to communicate with servers properly. This might happen due to an unstable internet connection or issues with server infrastructure."
+                            ? "The form may be empty, or the app could be having trouble connecting to the servers. This might be due to an unstable internet connection or server issues."
                             : e.code,
             currentContext,
           );
@@ -245,6 +247,41 @@ class _RegisterPageState extends State<RegisterPage> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(
+                  height: 10,
+                ),
+
+                const Text(
+                  "or",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+
+                const SizedBox(
+                  height: 10,
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SquareLoginTile(
+                      image: "assets/images/google-logo.png",
+                      onTap: () => AuthServices().signInWithGoogle(),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    SquareLoginTile(
+                      image: "assets/images/apple-logo.png",
+                      onTap: () {
+                        showErrorMessageToUser(
+                          "Registration with Apple isn’t integrated yet.",
+                          context,
+                        );
+                      },
                     ),
                   ],
                 )
