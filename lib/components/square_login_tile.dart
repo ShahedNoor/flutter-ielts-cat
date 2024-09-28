@@ -8,9 +8,6 @@ class SquareLoginTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Media query
-    final width = MediaQuery.sizeOf(context).width;
-
     return GestureDetector(
       onTap: onTap,
       child: Container(

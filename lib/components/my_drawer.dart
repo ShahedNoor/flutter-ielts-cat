@@ -20,10 +20,7 @@ class MyDrawer extends StatelessWidget {
             children: [
               // Drawer header with logo
               DrawerHeader(
-                child: Icon(
-                  Icons.favorite,
-                  color: Theme.of(context).colorScheme.inversePrimary,
-                ),
+                child: Image.asset("assets/images/maoew.gif"),
               ),
 
               const SizedBox(

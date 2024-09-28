@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         centerTitle: true,
-        title: const Text("W A L L"),
+        title: const Text("IELTS's Cat"),
       ),
       drawer: const MyDrawer(),
       // body: Column(
