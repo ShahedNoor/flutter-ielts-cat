@@ -20,9 +20,9 @@ class SettingsPage extends StatelessWidget {
         children: [
           Container(
             margin: const EdgeInsets.only(
-              top: 10.0,
-              left: 10.0,
-              right: 10.0,
+              top: 12.0,
+              left: 12.0,
+              right: 12.0,
             ),
             padding: EdgeInsets.all(12.0),
             decoration: BoxDecoration(
