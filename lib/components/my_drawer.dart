@@ -56,18 +56,18 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
 
-              // Users tile
+              // Settings tile
               Padding(
                 padding: const EdgeInsets.only(left: 25.0, right: 25),
                 child: ListTile(
-                  leading: const Icon(Icons.people),
-                  title: const Text("U S E R S"),
+                  leading: const Icon(Icons.settings),
+                  title: const Text("S E T T I N G S"),
                   onTap: () {
                     // Pop the context
                     Navigator.pop(context);
 
-                    // Navigate to users page
-                    Navigator.pushNamed(context, '/userPage');
+                    // Navigate to profile page
+                    Navigator.pushNamed(context, '/settingsPage');
                   },
                 ),
               ),

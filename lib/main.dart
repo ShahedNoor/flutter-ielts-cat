@@ -1,18 +1,27 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:ielts_cat/pages/settings_page.dart';
+import 'package:provider/provider.dart';
 
 import 'auth/auth_page.dart';
 import 'auth/login_or_register_or_reset_password.dart';
 import 'firebase_options.dart';
 import 'pages/home_page.dart';
 import 'pages/profile_page.dart';
-import 'pages/user_page.dart';
 import 'theme/dark_mode.dart';
 import 'theme/light_mode.dart';
+import 'theme/theme_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ThemeProvider>(create: (_) => ThemeProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -43,7 +52,7 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             title: "IELTS's Cat",
             debugShowCheckedModeBanner: false,
-            theme: lightMode,
+            theme: Provider.of<ThemeProvider>(context).themeData,
             darkTheme: darkMode,
             home: Scaffold(
               body: Center(
@@ -60,13 +69,13 @@ class _MyAppState extends State<MyApp> {
           title: "IELTS's Cat",
           debugShowCheckedModeBanner: false,
           home: const AuthPage(),
-          theme: lightMode,
+          theme: Provider.of<ThemeProvider>(context).themeData,
           darkTheme: darkMode,
           routes: {
             "/loginOrRegister": (context) => const LoginOrRegister(),
             "/homePage": (context) => HomePage(),
             "/profilePage": (context) => ProfilePage(),
-            "/userPage": (context) => const UserPage(),
+            "/settingsPage": (context) => SettingsPage(),
           },
         );
       },
