@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "302292436063",
+    "project_id": "ielts-cat-shahednoor",
+    "storage_bucket": "ielts-cat-shahednoor.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302292436063:android:6004df42b30bba8d0747ea",
+        "android_client_info": {
+          "package_name": "com.shahednoor.ielts_cat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2LuCJvGMRwd6UHBXpROHw-RYCdqwlCL4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
