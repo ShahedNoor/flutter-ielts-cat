@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 // Logo
                 Image.asset(
-                  "assets/images/welcome.gif",
+                  "assets/animations/welcome.gif",
                   width: width / 3,
                 ),
 
@@ -205,14 +205,14 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SquareLoginTile(
-                      image: "assets/images/google-logo.png",
+                      image: "assets/icons/login_and_register/google-logo.png",
                       onTap: () => AuthServices().signInWithGoogle(),
                     ),
                     const SizedBox(
                       width: 20,
                     ),
                     SquareLoginTile(
-                      image: "assets/images/apple-logo.png",
+                      image: "assets/icons/login_and_register/apple-logo.png",
                       onTap: () {
                         showErrorMessageToUser(
                           "Login with Apple isn’t integrated yet.",

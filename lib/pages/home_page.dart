@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:ielts_cat/components/my_bottom_app_bar.dart';
 import '../components/my_drawer.dart';
 import '../database/firestore_database.dart';
 
@@ -40,6 +40,7 @@ class HomePage extends StatelessWidget {
         title: const Text("IELTS's Cat"),
       ),
       drawer: const MyDrawer(),
+      bottomNavigationBar: MyBottomAppBar(),
       body: Column(
         children: [
         ],

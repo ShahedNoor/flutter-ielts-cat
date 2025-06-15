@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
             home: Scaffold(
               body: Center(
                 child: Image.asset(
-                  "assets/images/cat_loading.gif",
+                  "assets/animations/cat_loading.gif",
                   width: width / 3,
                 ),
               ),

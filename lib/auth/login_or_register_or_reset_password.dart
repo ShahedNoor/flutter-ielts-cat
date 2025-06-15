@@ -16,7 +16,7 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
   int currentPage = 0;
 
   // Toggle between login and register page
-  togglePages(int pageCount) {
+  void togglePages(int pageCount) {
     if (mounted) {
       setState(() {
         currentPage = pageCount;

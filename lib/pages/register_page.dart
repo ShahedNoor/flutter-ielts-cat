@@ -119,7 +119,7 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 // Logo
                 Image.asset(
-                  "assets/images/welcome.gif",
+                  "assets/animations/welcome.gif",
                   width: width / 3,
                 ),
 
@@ -268,14 +268,14 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SquareLoginTile(
-                      image: "assets/images/google-logo.png",
+                      image: "assets/icons/login_and_register/google-logo.png",
                       onTap: () => AuthServices().signInWithGoogle(),
                     ),
                     const SizedBox(
                       width: 20,
                     ),
                     SquareLoginTile(
-                      image: "assets/images/apple-logo.png",
+                      image: "assets/icons/login_and_register/apple-logo.png",
                       onTap: () {
                         showErrorMessageToUser(
                           "Registration with Apple isn’t integrated yet.",

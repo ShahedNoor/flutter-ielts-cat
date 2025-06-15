@@ -89,7 +89,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               children: [
                 // Logo
                 Image.asset(
-                  "assets/images/welcome.gif",
+                  "assets/animations/welcome.gif",
                   width: width / 3,
                 ),
 
