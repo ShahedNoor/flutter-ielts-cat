@@ -1,33 +1,27 @@
 import 'package:flutter/material.dart';
 
-class MyBottomAppBar extends StatefulWidget {
-  const MyBottomAppBar({super.key});
+class MyBottomAppBar extends StatelessWidget {
+  final int currentIndex;
+  final Function(int) onTap;
 
-  @override
-  State<MyBottomAppBar> createState() => _MyBottomAppBarState();
-}
-
-class _MyBottomAppBarState extends State<MyBottomAppBar> {
-  int currentPage = 0; // Default index for the bottom navigation bar
-
-  // Toggle between pages
-  void togglePages(int pageCount) {
-    setState(() {
-      currentPage = pageCount;
-    });
-  }
+  const MyBottomAppBar({
+    super.key,
+    required this.currentIndex,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: currentPage,
-      onTap: togglePages,
+      currentIndex: currentIndex,
+      onTap: onTap,
       items: [
         BottomNavigationBarItem(
           icon: Image.asset(
             "assets/icons/bottom_app_bar/listening.png",
             width: 30,
             height: 30,
+            color: Theme.of(context).colorScheme.inversePrimary,
           ),
           label: 'Listening',
         ),
@@ -36,6 +30,7 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
             "assets/icons/bottom_app_bar/reading.png",
             width: 30,
             height: 30,
+            color: Theme.of(context).colorScheme.inversePrimary,
           ),
           label: 'Reading',
         ),
@@ -44,6 +39,7 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
             "assets/icons/bottom_app_bar/writing.png",
             width: 30,
             height: 30,
+            color: Theme.of(context).colorScheme.inversePrimary,
           ),
           label: 'Writing',
         ),
@@ -52,6 +48,7 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
             "assets/icons/bottom_app_bar/speaking.png",
             width: 30,
             height: 30,
+            color: Theme.of(context).colorScheme.inversePrimary,
           ),
           label: 'Speaking',
         ),
@@ -60,6 +57,7 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
             "assets/icons/bottom_app_bar/calculator.png",
             width: 30,
             height: 30,
+            color: Theme.of(context).colorScheme.inversePrimary,
           ),
           label: 'Calculator',
         ),

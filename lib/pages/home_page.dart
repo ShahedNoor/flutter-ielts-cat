@@ -2,10 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:ielts_cat/components/my_bottom_app_bar.dart';
 import '../components/my_drawer.dart';
 import '../database/firestore_database.dart';
+import 'calculator_page.dart';
+import 'listening_page.dart';
+import 'reading_page.dart';
+import 'speaking_page.dart';
+import 'writing_page.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   // Firestore access
   final FirestoreDatabase database = FirestoreDatabase();
 
@@ -24,6 +34,23 @@ class HomePage extends StatelessWidget {
     newPostController.clear();
   }
 
+  int currentPage = 0;
+
+  // List of pages
+  final List<Widget> pages = const [
+    ListeningPage(),
+    ReadingPage(),
+    WritingPage(),
+    SpeakingPage(),
+    CalculatorPage(),
+  ];
+
+  void onTabTapped(int index) {
+    setState(() {
+      currentPage = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,11 +67,11 @@ class HomePage extends StatelessWidget {
         title: const Text("IELTS's Cat"),
       ),
       drawer: const MyDrawer(),
-      bottomNavigationBar: MyBottomAppBar(),
-      body: Column(
-        children: [
-        ],
+      bottomNavigationBar: MyBottomAppBar(
+        currentIndex: currentPage,
+        onTap: onTabTapped,
       ),
-    );
+      body: pages[currentPage]
+      );
   }
 }
