@@ -106,7 +106,7 @@ class _OverallBandScoreCalculatorCardState
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       elevation: 2,
-      color: theme.colorScheme.surface,
+      color: theme.colorScheme.primary,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
