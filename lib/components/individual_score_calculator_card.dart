@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ielts_cat/components/my_button.dart';
 
+import 'my_textfield.dart';
+
 enum ScoreType { listening, generalReading, academicReading }
 
 class IndividualScoreCalculatorCard extends StatefulWidget {
@@ -99,24 +101,24 @@ class _IndividualScoreCalculatorCardState
   }
 
   double _getAcademicReadingBand(int score) {
-  if (score >= 39) return 9.0;
-  if (score >= 37) return 8.5;
-  if (score >= 35) return 8.0;
-  if (score >= 33) return 7.5;
-  if (score >= 30) return 7.0;
-  if (score >= 27) return 6.5;
-  if (score >= 23) return 6.0;
-  if (score >= 19) return 5.5;
-  if (score >= 15) return 5.0;
-  if (score >= 13) return 4.5;
-  if (score >= 10) return 4.0;
-  if (score >= 7) return 3.5;
-  if (score >= 4) return 3.0;
-  if (score >= 3) return 2.5;
-  if (score >= 2) return 2.0;
-  if (score >= 1) return 1.0;
-  return 0.0;
-}
+    if (score >= 39) return 9.0;
+    if (score >= 37) return 8.5;
+    if (score >= 35) return 8.0;
+    if (score >= 33) return 7.5;
+    if (score >= 30) return 7.0;
+    if (score >= 27) return 6.5;
+    if (score >= 23) return 6.0;
+    if (score >= 19) return 5.5;
+    if (score >= 15) return 5.0;
+    if (score >= 13) return 4.5;
+    if (score >= 10) return 4.0;
+    if (score >= 7) return 3.5;
+    if (score >= 4) return 3.0;
+    if (score >= 3) return 2.5;
+    if (score >= 2) return 2.0;
+    if (score >= 1) return 1.0;
+    return 0.0;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +126,7 @@ class _IndividualScoreCalculatorCardState
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       elevation: 2,
-      color: Theme.of(context).colorScheme.primary,
+      color: Theme.of(context).colorScheme.surface,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Form(
@@ -139,13 +141,11 @@ class _IndividualScoreCalculatorCardState
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
-              TextFormField(
+              MyTextField(
+                hintText: "Raw Score (0-40)",
+                labelText: "Raw Score (0-40)",
+                obscureText: false,
                 controller: _inputController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  labelText: "Raw Score (0-40)",
-                  border: OutlineInputBorder(),
-                ),
                 validator: (value) {
                   final num = int.tryParse(value ?? '');
                   if (num == null || num < 0 || num > 40) {
