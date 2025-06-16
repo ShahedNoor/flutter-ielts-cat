@@ -13,10 +13,15 @@ ThemeData lightMode = ThemeData(
         displayColor: Colors.black,
       ),
   inputDecorationTheme: InputDecorationTheme(
-    labelStyle: TextStyle(
-      color: Colors.grey.shade800, // Set label text color for light mode
-    ),
+  labelStyle: TextStyle(color: Colors.grey.shade800),
+  enabledBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.grey.shade600), // Default border color
   ),
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.blueGrey.shade700), // Focused border color
+  ),
+  hintStyle: TextStyle(color: Colors.grey.shade600), // Hint text color
+),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     selectedItemColor: Colors.grey.shade800, // Active label/icon color
     unselectedItemColor: Colors.grey.shade500, // Inactive label/icon color

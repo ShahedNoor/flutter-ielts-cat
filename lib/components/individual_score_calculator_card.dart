@@ -126,7 +126,7 @@ class _IndividualScoreCalculatorCardState
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       elevation: 2,
-      color: Theme.of(context).colorScheme.surface,
+      color: Theme.of(context).colorScheme.primary,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Form(
