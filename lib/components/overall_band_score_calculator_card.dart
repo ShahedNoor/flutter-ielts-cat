@@ -12,7 +12,6 @@ class OverallBandScoreCalculatorCard extends StatefulWidget {
 class _OverallBandScoreCalculatorCardState
     extends State<OverallBandScoreCalculatorCard> {
   final List<double> _bandOptions = [
-    -1,
     0,
     0.5,
     1,
@@ -43,12 +42,16 @@ class _OverallBandScoreCalculatorCardState
   void calculateOverallScore() {
     final scores = [listening, reading, writing, speaking];
     if (scores.any((score) => score == -1)) {
-      setState(() => result = 'Please select all scores');
+      setState(() => result = 'Please select a score for all sections');
+      return;
+    }
+    if (scores.any((score) => score > 9.0)) {
+      setState(() => result = 'Band scores cannot exceed 9.0');
       return;
     }
 
     final average = scores.reduce((a, b) => a + b) / 4;
-    // Round to nearest 0.5 as per IELTS rules
+    // Round to nearest 0.5 or whole number as per IELTS rules
     double rounded;
     final decimal = average - average.floor();
     if (decimal < 0.25) {
@@ -84,7 +87,6 @@ class _OverallBandScoreCalculatorCardState
         DropdownButtonFormField<double>(
           value: value != -1 ? value : null,
           items: _bandOptions
-              .where((v) => v >= 0)
               .map((v) => DropdownMenuItem(value: v, child: Text(v.toString())))
               .toList(),
           onChanged: onChanged,
