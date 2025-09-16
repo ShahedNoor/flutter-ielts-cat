@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../components/loading_indicator.dart';
+
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
 
@@ -30,7 +32,8 @@ class ProfilePage extends StatelessWidget {
           // Circular progress indicator for loading
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: LoadingIndicator(// Custom size for the loading indicator
+              ),
             );
           }
           // If error

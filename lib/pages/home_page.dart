@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ielts_cat/components/my_app_bar.dart';
 import 'package:ielts_cat/components/my_bottom_app_bar.dart';
 import '../components/my_drawer.dart';
 import '../database/firestore_database.dart';
@@ -58,14 +59,7 @@ class _HomePageState extends State<HomePage> {
           .of(context)
           .colorScheme
           .surface,
-      appBar: AppBar(
-        backgroundColor: Theme
-            .of(context)
-            .colorScheme
-            .primary,
-        centerTitle: true,
-        title: const Text("IELTS's Cat"),
-      ),
+      appBar: MyAppBar(),
       drawer: const MyDrawer(),
       bottomNavigationBar: MyBottomAppBar(
         currentIndex: currentPage,

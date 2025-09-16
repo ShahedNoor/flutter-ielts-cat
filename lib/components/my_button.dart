@@ -3,14 +3,22 @@ import 'package:flutter/material.dart';
 class MyButton extends StatelessWidget {
   final String text;
   final void Function()? onTap;
+  final bool isSelected;
 
-  const MyButton({super.key, required this.text, required this.onTap});
+  const MyButton({
+    super.key,
+    required this.text,
+    this.onTap,
+    this.isSelected = false,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return MaterialButton(
       onPressed: onTap,
-      color: Theme.of(context).colorScheme.primary,
+      color: isSelected ? colorScheme.surface : colorScheme.primary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
       ),
@@ -18,7 +26,7 @@ class MyButton extends StatelessWidget {
       child: Center(
         child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
