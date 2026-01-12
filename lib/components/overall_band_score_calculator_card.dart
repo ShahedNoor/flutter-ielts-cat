@@ -84,16 +84,27 @@ class _OverallBandScoreCalculatorCardState
       children: [
         Text(label, style: Theme.of(context).textTheme.bodyLarge),
         const SizedBox(height: 6),
-        DropdownButtonFormField<double>(
-          value: value != -1 ? value : null,
-          items: _bandOptions
-              .map((v) => DropdownMenuItem(value: v, child: Text(v.toString())))
-              .toList(),
-          onChanged: onChanged,
-          hint: const Text("Select"),
+        InputDecorator(
           decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 12,
+              vertical: 10,
+            ),
+          ),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<double>(
+              value: value != -1 ? value : null,
+              items: _bandOptions
+                  .map(
+                    (v) =>
+                        DropdownMenuItem(value: v, child: Text(v.toString())),
+                  )
+                  .toList(),
+              onChanged: onChanged,
+              hint: const Text("Select"),
+              isExpanded: true,
+            ),
           ),
         ),
       ],

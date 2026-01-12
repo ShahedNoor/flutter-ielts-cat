@@ -15,8 +15,9 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         .doc(currentUser.email)
         .get();
 
-    if (!doc.exists || doc.data() == null)
+    if (!doc.exists || doc.data() == null) {
       throw Exception("No user data found");
+    }
 
     return doc.data()!;
   }
@@ -54,13 +55,16 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               height: 40,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                border: Border.all(color: Theme.of(context).colorScheme.primary, width: 2)
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.primary,
+                  width: 2,
+                ),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SizedBox(width: 10,),
+                  SizedBox(width: 10),
                   Text(username, style: const TextStyle(fontSize: 14)),
                   const SizedBox(width: 10),
                   Container(
@@ -68,7 +72,10 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                     height: 25,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(color: Theme.of(context).colorScheme.primary, width: 2),
+                      border: Border.all(
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 2,
+                      ),
                     ),
                     child: ClipOval(
                       child: profileImage != null
@@ -76,7 +83,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                           : const Icon(Icons.person, size: 20), // default
                     ),
                   ),
-                  SizedBox(width: 5,),
+                  SizedBox(width: 5),
                 ],
               ),
             );
@@ -88,7 +95,10 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           padding: const EdgeInsets.only(right: 8),
           child: IconButton(
             onPressed: () {},
-            icon: Icon(Icons.circle_notifications, color: Theme.of(context).colorScheme.inversePrimary,),
+            icon: Icon(
+              Icons.circle_notifications,
+              color: Theme.of(context).colorScheme.inversePrimary,
+            ),
           ),
         ),
       ],

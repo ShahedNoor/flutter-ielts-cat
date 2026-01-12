@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ielts_cat/gen/assets.gen.dart';
 
 class MyBottomAppBar extends StatelessWidget {
   final int currentIndex;
@@ -17,8 +18,7 @@ class MyBottomAppBar extends StatelessWidget {
       onTap: onTap,
       items: [
         BottomNavigationBarItem(
-          icon: Image.asset(
-            "assets/icons/bottom_app_bar/listening.png",
+          icon: Assets.icons.bottomAppBar.listening.image(
             width: 30,
             height: 30,
             color: Theme.of(context).colorScheme.inversePrimary,
@@ -26,8 +26,7 @@ class MyBottomAppBar extends StatelessWidget {
           label: 'Listening',
         ),
         BottomNavigationBarItem(
-          icon: Image.asset(
-            "assets/icons/bottom_app_bar/reading.png",
+          icon: Assets.icons.bottomAppBar.reading.image(
             width: 30,
             height: 30,
             color: Theme.of(context).colorScheme.inversePrimary,
@@ -35,8 +34,7 @@ class MyBottomAppBar extends StatelessWidget {
           label: 'Reading',
         ),
         BottomNavigationBarItem(
-          icon: Image.asset(
-            "assets/icons/bottom_app_bar/writing.png",
+          icon: Assets.icons.bottomAppBar.writing.image(
             width: 30,
             height: 30,
             color: Theme.of(context).colorScheme.inversePrimary,
@@ -44,8 +42,7 @@ class MyBottomAppBar extends StatelessWidget {
           label: 'Writing',
         ),
         BottomNavigationBarItem(
-          icon: Image.asset(
-            "assets/icons/bottom_app_bar/speaking.png",
+          icon: Assets.icons.bottomAppBar.speaking.image(
             width: 30,
             height: 30,
             color: Theme.of(context).colorScheme.inversePrimary,
@@ -53,8 +50,7 @@ class MyBottomAppBar extends StatelessWidget {
           label: 'Speaking',
         ),
         BottomNavigationBarItem(
-          icon: Image.asset(
-            "assets/icons/bottom_app_bar/calculator.png",
+          icon: Assets.icons.bottomAppBar.calculator.image(
             width: 30,
             height: 30,
             color: Theme.of(context).colorScheme.inversePrimary,

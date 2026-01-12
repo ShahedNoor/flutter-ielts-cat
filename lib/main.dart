@@ -11,6 +11,8 @@ import 'pages/settings_page.dart';
 import 'theme/dark_mode.dart';
 import 'theme/theme_provider.dart';
 
+import 'package:ielts_cat/gen/assets.gen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
@@ -42,10 +44,7 @@ class _MyAppState extends State<MyApp> {
 
     // Precache loading gif to make loading smoother
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      precacheImage(
-        const AssetImage("assets/animations/cat_loading.gif"),
-        context,
-      );
+      precacheImage(Assets.animations.catLoading.provider(), context);
     });
   }
 
@@ -66,10 +65,7 @@ class _MyAppState extends State<MyApp> {
                 darkTheme: darkMode,
                 home: Scaffold(
                   body: Center(
-                    child: Image.asset(
-                      "assets/animations/cat_loading.gif",
-                      width: width / 3,
-                    ),
+                    child: Assets.animations.catLoading.image(width: width / 3),
                   ),
                 ),
               );

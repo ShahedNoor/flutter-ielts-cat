@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ielts_cat/gen/assets.gen.dart';
 
 import '../components/my_button.dart';
 import '../components/my_textfield.dart';
@@ -12,8 +13,11 @@ class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
   final void Function()? onForgotTap;
 
-  const RegisterPage(
-      {super.key, required this.onTap, required this.onForgotTap});
+  const RegisterPage({
+    super.key,
+    required this.onTap,
+    required this.onForgotTap,
+  });
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -39,9 +43,7 @@ class _RegisterPageState extends State<RegisterPage> {
     // Show loading circle
     showDialog(
       context: context,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      builder: (context) => const Center(child: CircularProgressIndicator()),
     );
 
     // Check the password and confirm password match
@@ -56,7 +58,9 @@ class _RegisterPageState extends State<RegisterPage> {
         // Create the user
         UserCredential? userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
-                email: emailController.text, password: passwordController.text);
+              email: emailController.text,
+              password: passwordController.text,
+            );
 
         // Create a user document and add to firestore
         createUserDocument(userCredential);
@@ -75,12 +79,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     confirmPasswordController.text.isEmpty
                 ? "Please complete the entire form and try again – none of the fields can be left empty."
                 : e.code == "invalid-email"
-                    ? "Looks like the email field is empty, or the email you entered isn't quite right."
-                    : e.code == "network-request-failed"
-                        ? "Oops, it seems like there's an issue with your internet connection."
-                        : e.code == "channel-error"
-                            ? "The form may be empty, or the app could be having trouble connecting to the servers. This might be due to an unstable internet connection or server issues."
-                            : e.code,
+                ? "Looks like the email field is empty, or the email you entered isn't quite right."
+                : e.code == "network-request-failed"
+                ? "Oops, it seems like there's an issue with your internet connection."
+                : e.code == "channel-error"
+                ? "The form may be empty, or the app could be having trouble connecting to the servers. This might be due to an unstable internet connection or server issues."
+                : e.code,
             currentContext,
           );
         }
@@ -94,12 +98,10 @@ class _RegisterPageState extends State<RegisterPage> {
       await FirebaseFirestore.instance
           .collection("Users")
           .doc(userCredential.user!.email)
-          .set(
-        {
-          'email': userCredential.user!.email,
-          'username': usernameController.text
-        },
-      );
+          .set({
+            'email': userCredential.user!.email,
+            'username': usernameController.text,
+          });
     }
   }
 
@@ -118,26 +120,14 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Logo
-                Image.asset(
-                  "assets/animations/welcome.gif",
-                  width: width / 3,
-                ),
+                Assets.animations.welcome.image(width: width / 3),
 
-                const SizedBox(
-                  height: 15,
-                ),
+                const SizedBox(height: 15),
 
                 // App name
-                const Text(
-                  "IELTS Cat",
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
+                const Text("IELTS Cat", style: TextStyle(fontSize: 20)),
 
-                const SizedBox(
-                  height: 50,
-                ),
+                const SizedBox(height: 50),
 
                 // Email text field
                 MyTextField(
@@ -146,9 +136,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: usernameController,
                 ),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
                 // Email text field
                 MyTextField(
@@ -157,9 +145,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: emailController,
                 ),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
                 // Password text field
                 MyTextField(
@@ -179,9 +165,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                 ),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
                 MyTextField(
                   hintText: "Confirm Password",
@@ -200,9 +184,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                 ),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
                 // Forgot password
                 Row(
@@ -220,62 +202,45 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
                 // Register button
                 MyButton(text: "Register", onTap: registerUser),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
                 // Don't have an account? Register here
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text("Already have an account? "),
-                    const SizedBox(
-                      width: 10,
-                    ),
+                    const SizedBox(width: 10),
                     GestureDetector(
                       onTap: widget.onTap,
                       child: const Text(
                         "Login Here!",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
                 ),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
-                const Text(
-                  "or",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
+                const Text("or", style: TextStyle(fontWeight: FontWeight.bold)),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SquareLoginTile(
-                      image: "assets/icons/login_and_register/google-logo.png",
+                      image: Assets.icons.loginAndRegister.googleLogo.path,
                       onTap: () => AuthServices().signInWithGoogle(),
                     ),
-                    const SizedBox(
-                      width: 20,
-                    ),
+                    const SizedBox(width: 20),
                     SquareLoginTile(
-                      image: "assets/icons/login_and_register/apple-logo.png",
+                      image: Assets.icons.loginAndRegister.appleLogo.path,
                       onTap: () {
                         showErrorMessageToUser(
                           "Registration with Apple isn’t integrated yet.",
@@ -284,7 +249,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       },
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ielts_cat/gen/assets.gen.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -19,13 +20,9 @@ class MyDrawer extends StatelessWidget {
           Column(
             children: [
               // Drawer header with logo
-              DrawerHeader(
-                child: Image.asset("assets/animations/maoew.gif"),
-              ),
+              DrawerHeader(child: Assets.animations.maoew.image()),
 
-              const SizedBox(
-                height: 25.0,
-              ),
+              const SizedBox(height: 25.0),
 
               // Home tile
               Padding(

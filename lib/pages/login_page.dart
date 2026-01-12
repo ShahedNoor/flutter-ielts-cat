@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ielts_cat/components/square_login_tile.dart';
+import 'package:ielts_cat/gen/assets.gen.dart';
 import 'package:ielts_cat/services/auth_services.dart';
 
 import '../components/my_button.dart';
@@ -34,20 +35,19 @@ class _LoginPageState extends State<LoginPage> {
     // Show circle progress indicator
     showDialog(
       context: currentContext,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      builder: (context) => const Center(child: CircularProgressIndicator()),
     );
 
     // Try to sign in user
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
+        email: emailController.text,
+        password: passwordController.text,
+      );
 
       // Pop the circle progress indicator if still mounted
       if (currentContext.mounted) Navigator.pop(currentContext);
     }
-
     // If can't login then display an error
     on FirebaseAuthException catch (e) {
       // Pop the circle progress indicator if still mounted
@@ -58,14 +58,14 @@ class _LoginPageState extends State<LoginPage> {
           e.code == "invalid-email"
               ? "Looks like the email field is empty, or the email you entered isn't quite right."
               : e.code == "missing-password"
-                  ? "Oops, it seems like your password is missing!"
-                  : e.code == "invalid-credential"
-                      ? "Invalid credentials. Please double-check your information and try again."
-                      : e.code == "network-request-failed"
-                          ? "Oops, it seems like there's an issue with your internet connection."
-                          : e.code == "channel-error"
-                              ? "The form may be empty, or the app could be having trouble connecting to the servers. This might be due to an unstable internet connection or server issues."
-                              : e.code,
+              ? "Oops, it seems like your password is missing!"
+              : e.code == "invalid-credential"
+              ? "Invalid credentials. Please double-check your information and try again."
+              : e.code == "network-request-failed"
+              ? "Oops, it seems like there's an issue with your internet connection."
+              : e.code == "channel-error"
+              ? "The form may be empty, or the app could be having trouble connecting to the servers. This might be due to an unstable internet connection or server issues."
+              : e.code,
           currentContext,
         );
       }
@@ -87,26 +87,14 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Logo
-                Image.asset(
-                  "assets/animations/welcome.gif",
-                  width: width / 3,
-                ),
+                Assets.animations.welcome.image(width: width / 3),
 
-                const SizedBox(
-                  height: 15,
-                ),
+                const SizedBox(height: 15),
 
                 // App name
-                const Text(
-                  "IELTS Cat",
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
+                const Text("IELTS Cat", style: TextStyle(fontSize: 20)),
 
-                const SizedBox(
-                  height: 50,
-                ),
+                const SizedBox(height: 50),
 
                 // Email text field
                 MyTextField(
@@ -115,9 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                   controller: emailController,
                 ),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
                 // Password text field
                 MyTextField(
@@ -137,9 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                   controller: passwordController,
                 ),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
                 // Forgot password
                 Row(
@@ -157,62 +141,45 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
                 // Login button
                 MyButton(text: "Login", onTap: loginUser),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
                 // Don't have an account? Register here
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text("Don't have an account?"),
-                    const SizedBox(
-                      width: 10,
-                    ),
+                    const SizedBox(width: 10),
                     GestureDetector(
                       onTap: widget.onTap,
                       child: const Text(
                         "Register Here!",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
                 ),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
-                const Text(
-                  "or",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
+                const Text("or", style: TextStyle(fontWeight: FontWeight.bold)),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SquareLoginTile(
-                      image: "assets/icons/login_and_register/google-logo.png",
+                      image: Assets.icons.loginAndRegister.googleLogo.path,
                       onTap: () => AuthServices().signInWithGoogle(),
                     ),
-                    const SizedBox(
-                      width: 20,
-                    ),
+                    const SizedBox(width: 20),
                     SquareLoginTile(
-                      image: "assets/icons/login_and_register/apple-logo.png",
+                      image: Assets.icons.loginAndRegister.appleLogo.path,
                       onTap: () {
                         showErrorMessageToUser(
                           "Login with Apple isn’t integrated yet.",
@@ -221,7 +188,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

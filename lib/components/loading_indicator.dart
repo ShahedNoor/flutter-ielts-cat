@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ielts_cat/gen/assets.gen.dart';
 
 class LoadingIndicator extends StatelessWidget {
   final double? size; // Optional custom size
@@ -10,10 +11,7 @@ class LoadingIndicator extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
 
     return Center(
-      child: Image.asset(
-        "assets/animations/cat_loading.gif",
-        width: size ?? width / 3,
-      ),
+      child: Assets.animations.catLoading.image(width: size ?? width / 3),
     );
   }
 }

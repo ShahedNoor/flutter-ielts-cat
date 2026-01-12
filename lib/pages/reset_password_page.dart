@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ielts_cat/gen/assets.gen.dart';
 
 import '../components/my_button.dart';
 import '../components/my_textfield.dart';
@@ -29,15 +30,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     // Show circle progress indicator
     showDialog(
       context: currentContext,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      builder: (context) => const Center(child: CircularProgressIndicator()),
     );
 
     // Try to reset password
     try {
-      await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: emailController.text);
+      await FirebaseAuth.instance.sendPasswordResetEmail(
+        email: emailController.text,
+      );
 
       // Pop the circle progress indicator if still mounted
       if (currentContext.mounted) Navigator.pop(currentContext);
@@ -46,11 +46,11 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       // Display success message if the reset email was sent successfully
       if (currentContext.mounted) {
         showErrorMessageToUser(
-            "If an account exists for this email, a password reset email has been sent.",
-            currentContext);
+          "If an account exists for this email, a password reset email has been sent.",
+          currentContext,
+        );
       }
     }
-
     // If can't reset password then display an error
     on FirebaseAuthException catch (e) {
       // Pop the circle progress indicator if still mounted
@@ -61,12 +61,12 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
           e.code == "missing-email"
               ? "The email field is empty. Please enter your email to reset your password."
               : e.code == "invalid-email"
-                  ? "The email you entered isn't quite right."
-                  : e.code == "network-request-failed"
-                      ? "Oops, it seems like there's an issue with your internet connection."
-                      : e.code == "channel-error"
-                          ? "The app failed to communicate with servers properly. This might happen due to an unstable internet connection or issues with server infrastructure."
-                          : e.code,
+              ? "The email you entered isn't quite right."
+              : e.code == "network-request-failed"
+              ? "Oops, it seems like there's an issue with your internet connection."
+              : e.code == "channel-error"
+              ? "The app failed to communicate with servers properly. This might happen due to an unstable internet connection or issues with server infrastructure."
+              : e.code,
           currentContext,
         );
       }
@@ -88,26 +88,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Logo
-                Image.asset(
-                  "assets/animations/welcome.gif",
-                  width: width / 3,
-                ),
+                Assets.animations.welcome.image(width: width / 3),
 
-                const SizedBox(
-                  height: 15,
-                ),
+                const SizedBox(height: 15),
 
                 // App name
-                const Text(
-                  "IELTS's Cat",
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
+                const Text("IELTS's Cat", style: TextStyle(fontSize: 20)),
 
-                const SizedBox(
-                  height: 50,
-                ),
+                const SizedBox(height: 50),
 
                 // Email text field
                 MyTextField(
@@ -116,44 +104,32 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   controller: emailController,
                 ),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
                 // Login button
                 MyButton(text: "Reset Password", onTap: loginUser),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
 
                 // Don't have an account? Register here
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text("Password reset complete?"),
-                    const SizedBox(
-                      width: 10,
-                    ),
+                    const SizedBox(width: 10),
                     GestureDetector(
                       onTap: widget.onTap,
                       child: const Text(
                         "Login Here!",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),
