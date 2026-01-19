@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ielts_cat/pages/reset_password_page.dart';
+import 'package:ielts_cat/features/auth/presentation/pages/reset_password_page.dart';
 
-import '../pages/login_page.dart';
-import '../pages/register_page.dart';
+import 'login_page.dart';
+import 'register_page.dart';
 
 class LoginOrRegister extends StatefulWidget {
   const LoginOrRegister({super.key});

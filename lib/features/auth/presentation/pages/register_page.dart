@@ -1,13 +1,14 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ielts_cat/gen/assets.gen.dart';
+import 'package:ielts_cat/services/auth_services.dart';
 
-import '../components/my_button.dart';
-import '../components/my_textfield.dart';
-import '../components/square_login_tile.dart';
-import '../helper/helper_functions.dart';
-import '../services/auth_services.dart';
+import '../../../../components/my_button.dart';
+import '../../../../components/my_textfield.dart';
+import '../../../../components/square_login_tile.dart';
+import '../../../../helper/helper_functions.dart';
+import '../bloc/auth_bloc.dart';
+import '../bloc/auth_event.dart';
 
 class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
@@ -38,70 +39,20 @@ class _RegisterPageState extends State<RegisterPage> {
   bool currentObscureText = true;
 
   // Register user
-  void registerUser() async {
-    final currentContext = context;
-    // Show loading circle
-    showDialog(
-      context: context,
-      builder: (context) => const Center(child: CircularProgressIndicator()),
-    );
-
+  void registerUser() {
     // Check the password and confirm password match
     if (passwordController.text != confirmPasswordController.text) {
-      Navigator.pop(context);
-
       // Show error message to user
       showErrorMessageToUser("Passwords don't match!", context);
     } else {
-      // Try to create user
-      try {
-        // Create the user
-        UserCredential? userCredential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-              email: emailController.text,
-              password: passwordController.text,
-            );
-
-        // Create a user document and add to firestore
-        createUserDocument(userCredential);
-
-        if (currentContext.mounted) Navigator.pop(currentContext);
-      } on FirebaseAuthException catch (e) {
-        // Por the circle progress indicator
-        if (currentContext.mounted) Navigator.pop(currentContext);
-
-        // Display error message to user
-        if (currentContext.mounted) {
-          showErrorMessageToUser(
-            usernameController.text.isEmpty ||
-                    emailController.text.isEmpty ||
-                    passwordController.text.isEmpty ||
-                    confirmPasswordController.text.isEmpty
-                ? "Please complete the entire form and try again – none of the fields can be left empty."
-                : e.code == "invalid-email"
-                ? "Looks like the email field is empty, or the email you entered isn't quite right."
-                : e.code == "network-request-failed"
-                ? "Oops, it seems like there's an issue with your internet connection."
-                : e.code == "channel-error"
-                ? "The form may be empty, or the app could be having trouble connecting to the servers. This might be due to an unstable internet connection or server issues."
-                : e.code,
-            currentContext,
-          );
-        }
-      }
-    }
-  }
-
-  // Create a user document and collect them in firestore
-  Future<void> createUserDocument(UserCredential? userCredential) async {
-    if (userCredential != null && userCredential.user != null) {
-      await FirebaseFirestore.instance
-          .collection("Users")
-          .doc(userCredential.user!.email)
-          .set({
-            'email': userCredential.user!.email,
-            'username': usernameController.text,
-          });
+      // Dispatch Signup Event
+      context.read<AuthBloc>().add(
+        AuthSignedUp(
+          email: emailController.text,
+          password: passwordController.text,
+          username: usernameController.text,
+        ),
+      );
     }
   }
 

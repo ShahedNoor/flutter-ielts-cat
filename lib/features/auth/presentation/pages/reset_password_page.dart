@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ielts_cat/gen/assets.gen.dart';
 
-import '../components/my_button.dart';
-import '../components/my_textfield.dart';
-import '../helper/helper_functions.dart';
+import '../../../../components/my_button.dart';
+import '../../../../components/my_textfield.dart';
+import '../../../../helper/helper_functions.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   final void Function()? onTap;

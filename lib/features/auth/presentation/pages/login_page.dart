@@ -1,12 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ielts_cat/components/square_login_tile.dart';
 import 'package:ielts_cat/gen/assets.gen.dart';
 import 'package:ielts_cat/services/auth_services.dart';
 
-import '../components/my_button.dart';
-import '../components/my_textfield.dart';
-import '../helper/helper_functions.dart';
+import '../../../../components/my_button.dart';
+import '../../../../components/my_textfield.dart';
+import '../../../../helper/helper_functions.dart';
+import '../bloc/auth_bloc.dart';
+import '../bloc/auth_event.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
@@ -21,55 +23,20 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // Text controller
   final TextEditingController emailController = TextEditingController();
-
   final TextEditingController passwordController = TextEditingController();
 
   // Current obscureText
   bool currentObscureText = true;
 
   // Login method
-  void loginUser() async {
-    // Save the current context
-    final currentContext = context;
-
-    // Show circle progress indicator
-    showDialog(
-      context: currentContext,
-      builder: (context) => const Center(child: CircularProgressIndicator()),
-    );
-
-    // Try to sign in user
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+  void loginUser() {
+    // Dispatch Login Event
+    context.read<AuthBloc>().add(
+      AuthLoggedIn(
         email: emailController.text,
         password: passwordController.text,
-      );
-
-      // Pop the circle progress indicator if still mounted
-      if (currentContext.mounted) Navigator.pop(currentContext);
-    }
-    // If can't login then display an error
-    on FirebaseAuthException catch (e) {
-      // Pop the circle progress indicator if still mounted
-      if (currentContext.mounted) Navigator.pop(currentContext);
-
-      if (currentContext.mounted) {
-        showErrorMessageToUser(
-          e.code == "invalid-email"
-              ? "Looks like the email field is empty, or the email you entered isn't quite right."
-              : e.code == "missing-password"
-              ? "Oops, it seems like your password is missing!"
-              : e.code == "invalid-credential"
-              ? "Invalid credentials. Please double-check your information and try again."
-              : e.code == "network-request-failed"
-              ? "Oops, it seems like there's an issue with your internet connection."
-              : e.code == "channel-error"
-              ? "The form may be empty, or the app could be having trouble connecting to the servers. This might be due to an unstable internet connection or server issues."
-              : e.code,
-          currentContext,
-        );
-      }
-    }
+      ),
+    );
   }
 
   @override
