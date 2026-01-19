@@ -1,4 +1,4 @@
-package com.shahednoor.ielts_cat
+package app.shahednoor.ieltscat
 
 import io.flutter.embedding.android.FlutterActivity
 

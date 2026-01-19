@@ -7,12 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:302292436063:android:6004df42b30bba8d0747ea",
+        "mobilesdk_app_id": "1:302292436063:android:59b09f8accb71f830747ea",
         "android_client_info": {
-          "package_name": "com.shahednoor.ielts_cat"
+          "package_name": "app.shahednoor.ieltscat"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "302292436063-6aoufmepoio6cq6lh506t2bpstkb6mqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyB2LuCJvGMRwd6UHBXpROHw-RYCdqwlCL4"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "302292436063-6aoufmepoio6cq6lh506t2bpstkb6mqe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "302292436063-2paogikn5cc5o6c75av18ctd599vagm6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.shahednoor.ieltsCat"
+              }
+            }
+          ]
         }
       }
     }

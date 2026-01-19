@@ -42,17 +42,17 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyCtxThUan4PRKv9KGIG_pZqc_aiA3q01uo',
-    appId: '1:302292436063:web:fb4f4298aa5cbff70747ea',
+    appId: '1:302292436063:web:37a02cc2313e029e0747ea',
     messagingSenderId: '302292436063',
     projectId: 'ielts-cat-shahednoor',
     authDomain: 'ielts-cat-shahednoor.firebaseapp.com',
     storageBucket: 'ielts-cat-shahednoor.firebasestorage.app',
-    measurementId: 'G-HDN8D0K1XR',
+    measurementId: 'G-LS0S7YR2Z5',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyB2LuCJvGMRwd6UHBXpROHw-RYCdqwlCL4',
-    appId: '1:302292436063:android:6004df42b30bba8d0747ea',
+    appId: '1:302292436063:android:59b09f8accb71f830747ea',
     messagingSenderId: '302292436063',
     projectId: 'ielts-cat-shahednoor',
     storageBucket: 'ielts-cat-shahednoor.firebasestorage.app',
@@ -60,30 +60,33 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBkJLyOTbLHo0BVQNY01M4NVyoDZKPRFc0',
-    appId: '1:302292436063:ios:abb283b136acaf060747ea',
+    appId: '1:302292436063:ios:4a5bc1165f72ce2c0747ea',
     messagingSenderId: '302292436063',
     projectId: 'ielts-cat-shahednoor',
     storageBucket: 'ielts-cat-shahednoor.firebasestorage.app',
-    iosBundleId: 'com.shahednoor.ieltsCat',
+    androidClientId: '302292436063-q7peu4n1mos0qvr6t06unsd34njh7jtn.apps.googleusercontent.com',
+    iosClientId: '302292436063-thr1nr26rji259fl8uonoq4r1vbe7jqh.apps.googleusercontent.com',
+    iosBundleId: 'app.shahednoor.ieltscat',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyBkJLyOTbLHo0BVQNY01M4NVyoDZKPRFc0',
-    appId: '1:302292436063:ios:abb283b136acaf060747ea',
+    appId: '1:302292436063:ios:4a5bc1165f72ce2c0747ea',
     messagingSenderId: '302292436063',
     projectId: 'ielts-cat-shahednoor',
     storageBucket: 'ielts-cat-shahednoor.firebasestorage.app',
-    iosBundleId: 'com.shahednoor.ieltsCat',
+    androidClientId: '302292436063-q7peu4n1mos0qvr6t06unsd34njh7jtn.apps.googleusercontent.com',
+    iosClientId: '302292436063-thr1nr26rji259fl8uonoq4r1vbe7jqh.apps.googleusercontent.com',
+    iosBundleId: 'app.shahednoor.ieltscat',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
     apiKey: 'AIzaSyCtxThUan4PRKv9KGIG_pZqc_aiA3q01uo',
-    appId: '1:302292436063:web:4cee592992c067be0747ea',
+    appId: '1:302292436063:web:8a3b25482dc31b820747ea',
     messagingSenderId: '302292436063',
     projectId: 'ielts-cat-shahednoor',
     authDomain: 'ielts-cat-shahednoor.firebaseapp.com',
     storageBucket: 'ielts-cat-shahednoor.firebasestorage.app',
-    measurementId: 'G-V0WMJ9TPZS',
+    measurementId: 'G-VTDP205KBC',
   );
-
 }

@@ -1,1 +1,41 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"ielts-cat-shahednoor","appId":"1:302292436063:android:6004df42b30bba8d0747ea","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"ielts-cat-shahednoor","configurations":{"android":"1:302292436063:android:6004df42b30bba8d0747ea","ios":"1:302292436063:ios:abb283b136acaf060747ea","macos":"1:302292436063:ios:abb283b136acaf060747ea","web":"1:302292436063:web:fb4f4298aa5cbff70747ea","windows":"1:302292436063:web:4cee592992c067be0747ea"}}}}}}
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "ielts-cat-shahednoor",
+                    "appId": "1:302292436063:android:59b09f8accb71f830747ea",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "ielts-cat-shahednoor",
+                    "configurations": {
+                        "android": "1:302292436063:android:59b09f8accb71f830747ea",
+                        "ios": "1:302292436063:ios:4a5bc1165f72ce2c0747ea",
+                        "macos": "1:302292436063:ios:4a5bc1165f72ce2c0747ea",
+                        "web": "1:302292436063:web:37a02cc2313e029e0747ea",
+                        "windows": "1:302292436063:web:8a3b25482dc31b820747ea"
+                    }
+                }
+            },
+            "ios": {
+                "default": {
+                    "projectId": "ielts-cat-shahednoor",
+                    "appId": "1:302292436063:ios:4a5bc1165f72ce2c0747ea",
+                    "uploadDebugSymbols": false,
+                    "fileOutput": "ios/Runner/GoogleService-Info.plist"
+                }
+            },
+            "macos": {
+                "default": {
+                    "projectId": "ielts-cat-shahednoor",
+                    "appId": "1:302292436063:ios:4a5bc1165f72ce2c0747ea",
+                    "uploadDebugSymbols": false,
+                    "fileOutput": "macos/Runner/GoogleService-Info.plist"
+                }
+            }
+        }
+    }
+}
