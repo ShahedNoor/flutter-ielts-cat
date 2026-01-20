@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ielts_cat/components/my_app_bar.dart';
 import 'package:ielts_cat/components/my_bottom_app_bar.dart';
 import 'package:ielts_cat/components/my_drawer.dart';
-import 'package:ielts_cat/features/band_calculator/presentation/pages/calculator_page.dart';
-import 'package:ielts_cat/features/exam_modules/presentation/pages/listening_page.dart';
-import 'package:ielts_cat/features/exam_modules/presentation/pages/reading_page.dart';
-import 'package:ielts_cat/features/exam_modules/presentation/pages/speaking_page.dart';
-import 'package:ielts_cat/features/exam_modules/presentation/pages/writing_page.dart';
+import 'package:ielts_cat/features/calculator/presentation/pages/calculator_page.dart';
+import 'package:ielts_cat/features/listening/presentation/pages/listening_page.dart';
+import 'package:ielts_cat/features/reading/presentation/pages/reading_page.dart';
+import 'package:ielts_cat/features/speaking/presentation/pages/speaking_page.dart';
+import 'package:ielts_cat/features/writing/presentation/pages/writing_page.dart';
 import 'package:ielts_cat/features/home/presentation/cubit/home_cubit.dart';
 import 'package:ielts_cat/injection_container.dart';
 

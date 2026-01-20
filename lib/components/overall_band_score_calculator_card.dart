@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ielts_cat/components/my_button.dart';
-import 'package:ielts_cat/features/band_calculator/presentation/cubit/calculator_cubit.dart';
+import 'package:ielts_cat/features/calculator/presentation/cubit/calculator_cubit.dart';
 import 'package:ielts_cat/injection_container.dart';
 
 class OverallBandScoreCalculatorCard extends StatefulWidget {
