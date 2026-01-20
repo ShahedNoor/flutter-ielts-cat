@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ielts_cat/gen/assets.gen.dart';
 
-import '../../../../pages/home_page.dart';
+import 'package:ielts_cat/features/home/presentation/pages/home_page.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_state.dart';
 import 'login_or_register_page.dart';

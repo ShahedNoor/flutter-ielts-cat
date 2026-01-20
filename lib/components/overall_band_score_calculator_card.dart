@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ielts_cat/components/my_button.dart';
+import 'package:ielts_cat/features/band_calculator/presentation/cubit/calculator_cubit.dart';
+import 'package:ielts_cat/injection_container.dart';
 
 class OverallBandScoreCalculatorCard extends StatefulWidget {
   const OverallBandScoreCalculatorCard({super.key});
@@ -37,41 +40,12 @@ class _OverallBandScoreCalculatorCardState
   double reading = -1;
   double writing = -1;
   double speaking = -1;
-  String result = '';
 
-  void calculateOverallScore() {
-    final scores = [listening, reading, writing, speaking];
-    if (scores.any((score) => score == -1)) {
-      setState(() => result = 'Please select a score for all sections');
-      return;
-    }
-    if (scores.any((score) => score > 9.0)) {
-      setState(() => result = 'Band scores cannot exceed 9.0');
-      return;
-    }
-
-    final average = scores.reduce((a, b) => a + b) / 4;
-    // Round to nearest 0.5 or whole number as per IELTS rules
-    double rounded;
-    final decimal = average - average.floor();
-    if (decimal < 0.25) {
-      rounded = average.floorToDouble();
-    } else if (decimal < 0.75) {
-      rounded = average.floorToDouble() + 0.5;
-    } else {
-      rounded = average.ceilToDouble();
-    }
-
-    setState(() {
-      result = 'Overall Band Score: ${rounded.toStringAsFixed(1)}';
-    });
-  }
-
-  void reset() {
+  void reset(BuildContext context) {
     setState(() {
       listening = reading = writing = speaking = -1;
-      result = '';
     });
+    context.read<CalculatorCubit>().reset();
   }
 
   Widget _buildDropdown(
@@ -114,63 +88,93 @@ class _OverallBandScoreCalculatorCardState
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      elevation: 2,
-      color: theme.colorScheme.primary,
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            Text(
-              "Overall Band Score Calculator",
-              style: theme.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
+    return BlocProvider(
+      create: (_) => getIt<CalculatorCubit>(),
+      child: Builder(
+        builder: (context) {
+          return Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            elevation: 2,
+            color: theme.colorScheme.primary,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  Text(
+                    "Overall Band Score Calculator",
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 20),
+                  _buildDropdown(
+                    "Listening",
+                    listening,
+                    (val) => setState(() => listening = val ?? -1),
+                  ),
+                  const SizedBox(height: 16),
+                  _buildDropdown(
+                    "Reading",
+                    reading,
+                    (val) => setState(() => reading = val ?? -1),
+                  ),
+                  const SizedBox(height: 16),
+                  _buildDropdown(
+                    "Writing",
+                    writing,
+                    (val) => setState(() => writing = val ?? -1),
+                  ),
+                  const SizedBox(height: 16),
+                  _buildDropdown(
+                    "Speaking",
+                    speaking,
+                    (val) => setState(() => speaking = val ?? -1),
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      MyButton(
+                        text: "Calculate",
+                        onTap: () {
+                          context.read<CalculatorCubit>().calculateOverall([
+                            listening,
+                            reading,
+                            writing,
+                            speaking,
+                          ]);
+                        },
+                      ),
+                      MyButton(text: "Reset", onTap: () => reset(context)),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  BlocBuilder<CalculatorCubit, CalculatorState>(
+                    builder: (context, state) {
+                      if (state is CalculatorResult) {
+                        return Text(
+                          state.result,
+                          style: theme.textTheme.headlineSmall?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        );
+                      } else if (state is CalculatorError) {
+                        return Text(
+                          state.message,
+                          style: TextStyle(color: Colors.red),
+                        );
+                      }
+                      return SizedBox.shrink();
+                    },
+                  ),
+                ],
               ),
-              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 20),
-            _buildDropdown(
-              "Listening",
-              listening,
-              (val) => setState(() => listening = val ?? -1),
-            ),
-            const SizedBox(height: 16),
-            _buildDropdown(
-              "Reading",
-              reading,
-              (val) => setState(() => reading = val ?? -1),
-            ),
-            const SizedBox(height: 16),
-            _buildDropdown(
-              "Writing",
-              writing,
-              (val) => setState(() => writing = val ?? -1),
-            ),
-            const SizedBox(height: 16),
-            _buildDropdown(
-              "Speaking",
-              speaking,
-              (val) => setState(() => speaking = val ?? -1),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                MyButton(text: "Calculate", onTap: calculateOverallScore),
-                MyButton(text: "Reset", onTap: reset),
-              ],
-            ),
-            const SizedBox(height: 20),
-            if (result.isNotEmpty)
-              Text(
-                result,
-                style: theme.textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

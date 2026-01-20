@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ielts_cat/components/overall_band_score_calculator_card.dart';
 
-import '../components/individual_score_calculator_card.dart';
+import 'package:ielts_cat/components/individual_score_calculator_card.dart';
 
 class CalculatorPage extends StatelessWidget {
   const CalculatorPage({super.key});

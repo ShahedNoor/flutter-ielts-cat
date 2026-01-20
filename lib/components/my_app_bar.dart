@@ -51,40 +51,43 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             final username = user['username'] ?? "No Name";
             final profileImage =
                 user['profilePicture']; // store URL in Firestore
-            return Container(
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                border: Border.all(
-                  color: Theme.of(context).colorScheme.primary,
-                  width: 2,
+            return InkWell(
+              onTap: () => Navigator.pushNamed(context, "/profilePage"),
+              child: Container(
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.primary,
+                    width: 2,
+                  ),
                 ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(width: 10),
-                  Text(username, style: const TextStyle(fontSize: 14)),
-                  const SizedBox(width: 10),
-                  Container(
-                    width: 25,
-                    height: 25,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Theme.of(context).colorScheme.primary,
-                        width: 2,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(width: 10),
+                    Text(username, style: const TextStyle(fontSize: 14)),
+                    const SizedBox(width: 10),
+                    Container(
+                      width: 25,
+                      height: 25,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 2,
+                        ),
+                      ),
+                      child: ClipOval(
+                        child: profileImage != null
+                            ? Image.network(profileImage, fit: BoxFit.cover)
+                            : const Icon(Icons.person, size: 20), // default
                       ),
                     ),
-                    child: ClipOval(
-                      child: profileImage != null
-                          ? Image.network(profileImage, fit: BoxFit.cover)
-                          : const Icon(Icons.person, size: 20), // default
-                    ),
-                  ),
-                  SizedBox(width: 5),
-                ],
+                    SizedBox(width: 5),
+                  ],
+                ),
               ),
             );
           }

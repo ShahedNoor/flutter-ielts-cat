@@ -11,8 +11,8 @@ import 'features/auth/presentation/bloc/auth_bloc.dart';
 import 'features/auth/presentation/bloc/auth_event.dart';
 import 'features/settings/presentation/cubit/theme_cubit.dart';
 import 'firebase_options.dart';
-import 'pages/home_page.dart';
-import 'pages/profile_page.dart';
+import 'features/home/presentation/pages/home_page.dart';
+import 'features/profile/presentation/pages/profile_page.dart';
 import 'features/settings/presentation/pages/settings_page.dart';
 
 void main() async {

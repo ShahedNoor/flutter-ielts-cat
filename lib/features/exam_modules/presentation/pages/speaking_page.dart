@@ -41,7 +41,13 @@ class _SpeakingPageState extends State<SpeakingPage> {
             ),
             child: Column(
               children: [
-                Text("Please Select Your Level of Speaking"),
+                Text(
+                  "Please Select Your Level of Speaking!",
+                  textAlign: TextAlign.center,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
+                ),
                 SizedBox(height: 16),
 
                 Row(
