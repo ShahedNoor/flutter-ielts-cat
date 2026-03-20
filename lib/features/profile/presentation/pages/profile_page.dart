@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ielts_cat/components/loading_indicator.dart';
+import 'package:ielts_cat/core/widgets/loading_indicator.dart';
 import 'package:ielts_cat/injection_container.dart';
 
 import '../bloc/profile_bloc.dart';

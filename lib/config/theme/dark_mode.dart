@@ -1,37 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:ielts_cat/core/theme/ielts_colors.dart';
 
 ThemeData darkMode = ThemeData(
-  brightness: Brightness.dark,
-  colorScheme: ColorScheme.dark(
-    surface: Colors.grey.shade900,
-    primary: Colors.grey.shade800,
-    secondary: const Color.fromARGB(255, 66, 66, 66), // Inverted secondary
-    inversePrimary: Colors.grey.shade200,
+  brightness: Brightness.light,
+  scaffoldBackgroundColor: IeltsColors.bg,
+  colorScheme: const ColorScheme.light(
+    surface: IeltsColors.surface,
+    primary: IeltsColors.ink,
+    secondary: IeltsColors.accent,
+    background: IeltsColors.bg,
+    onSurface: IeltsColors.ink,
+    onPrimary: IeltsColors.bg,
+    onSecondary: IeltsColors.bg,
+    onBackground: IeltsColors.ink,
   ),
-  textTheme: ThemeData.dark().textTheme.apply(
-    bodyColor: Colors.grey.shade200,
-    displayColor: Colors.white,
+  textTheme: GoogleFonts.dmSansTextTheme().apply(
+    bodyColor: IeltsColors.ink,
+    displayColor: IeltsColors.ink,
   ),
   inputDecorationTheme: InputDecorationTheme(
-    labelStyle: TextStyle(color: Colors.grey.shade200),
+    labelStyle: const TextStyle(color: IeltsColors.ink),
     enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.grey.shade400),
+      borderSide: const BorderSide(color: IeltsColors.border),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.blueGrey.shade300),
+      borderSide: const BorderSide(color: IeltsColors.ink),
     ),
-    hintStyle: TextStyle(color: Colors.grey.shade400),
+    hintStyle: const TextStyle(color: IeltsColors.inkSoft),
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    selectedItemColor: Colors.grey.shade200,
-    unselectedItemColor: Colors.grey.shade500,
-    backgroundColor: Colors.grey.shade900,
-    selectedLabelStyle: TextStyle(color: Colors.grey.shade200),
-    unselectedLabelStyle: TextStyle(color: Colors.grey.shade500),
+    selectedItemColor: IeltsColors.ink,
+    unselectedItemColor: IeltsColors.inkSoft,
+    backgroundColor: IeltsColors.surface,
+    selectedLabelStyle: const TextStyle(color: IeltsColors.ink),
+    unselectedLabelStyle: const TextStyle(color: IeltsColors.inkSoft),
   ),
   textSelectionTheme: TextSelectionThemeData(
-    cursorColor: Colors.blueGrey.shade300, // Contrasts with grey.shade800
-    selectionColor: Colors.grey.shade600, // Lighter selection color
-    selectionHandleColor: Colors.blueGrey.shade300, // Matches cursor
+    cursorColor: IeltsColors.ink,
+    selectionColor: IeltsColors.border,
+    selectionHandleColor: IeltsColors.ink,
   ),
+  dividerColor: IeltsColors.border,
 );

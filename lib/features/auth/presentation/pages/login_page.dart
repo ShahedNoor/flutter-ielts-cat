@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ielts_cat/components/square_login_tile.dart';
+import 'package:ielts_cat/core/widgets/square_login_tile.dart';
 import 'package:ielts_cat/gen/assets.gen.dart';
-import 'package:ielts_cat/services/auth_services.dart';
+import 'package:ielts_cat/core/services/auth_services.dart';
 
-import '../../../../components/my_button.dart';
-import '../../../../components/my_textfield.dart';
-import '../../../../helper/helper_functions.dart';
+import 'package:ielts_cat/core/widgets/my_button.dart';
+import 'package:ielts_cat/core/widgets/my_textfield.dart';
+import 'package:ielts_cat/core/utils/helper_functions.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_event.dart';
 

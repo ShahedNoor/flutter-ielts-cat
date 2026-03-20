@@ -47,6 +47,7 @@ dependencies:
   equatable: ^2.0.8
   get_it: ^9.2.0
   injectable: ^2.7.1+4
+  google_fonts: ^6.3.0
 
 dev_dependencies:
   flutter_test:

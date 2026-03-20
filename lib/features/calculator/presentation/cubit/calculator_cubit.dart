@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:ielts_cat/components/individual_score_calculator_card.dart';
+import 'package:ielts_cat/core/widgets/individual_score_calculator_card.dart';
 
 part 'calculator_state.dart';
 
