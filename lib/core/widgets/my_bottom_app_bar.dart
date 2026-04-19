@@ -22,8 +22,7 @@ class MyBottomAppBar extends StatelessWidget {
       _BottomBarItem(label: 'Writing', icon: Icons.edit),
     ];
 
-    return Container(
-      height: 72,
+    return DecoratedBox(
       decoration: BoxDecoration(
         color: IeltsColors.surface,
         border: const Border(top: BorderSide(color: IeltsColors.border)),
@@ -37,56 +36,65 @@ class MyBottomAppBar extends StatelessWidget {
       ),
       child: SafeArea(
         top: false,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: List.generate(items.length, (index) {
-            final item = items[index];
-            final bool isActive = index == currentIndex;
+        minimum: const EdgeInsets.only(bottom: 8),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: List.generate(items.length, (index) {
+              final item = items[index];
+              final bool isActive = index == currentIndex;
 
-            return Expanded(
-              child: InkWell(
-                onTap: () => onTap(index),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 180),
-                        width: 28,
-                        height: 28,
-                        decoration: BoxDecoration(
-                          color: isActive
-                              ? IeltsColors.ink
-                              : Colors.transparent,
-                          borderRadius: BorderRadius.circular(8),
+              return Expanded(
+                child: InkWell(
+                  onTap: () => onTap(index),
+                  borderRadius: BorderRadius.circular(14),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 6),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 180),
+                          width: 28,
+                          height: 28,
+                          decoration: BoxDecoration(
+                            color: isActive
+                                ? IeltsColors.ink
+                                : Colors.transparent,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Icon(
+                            item.icon,
+                            size: 16,
+                            color: isActive
+                                ? IeltsColors.bg
+                                : IeltsColors.inkSoft,
+                          ),
                         ),
-                        child: Icon(
-                          item.icon,
-                          size: 16,
-                          color: isActive
-                              ? IeltsColors.bg
-                              : IeltsColors.inkSoft,
+                        const SizedBox(height: 4),
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            item.label,
+                            style: GoogleFonts.dmSans(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: 0.4,
+                              color: isActive
+                                  ? IeltsColors.ink
+                                  : IeltsColors.inkSoft,
+                            ),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        item.label,
-                        style: GoogleFonts.dmSans(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: 0.4,
-                          color: isActive
-                              ? IeltsColors.ink
-                              : IeltsColors.inkSoft,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            );
-          }),
+              );
+            }),
+          ),
         ),
       ),
     );

@@ -9,6 +9,7 @@ import 'features/auth/presentation/pages/login_or_register_page.dart';
 
 import 'features/auth/presentation/bloc/auth_bloc.dart';
 import 'features/auth/presentation/bloc/auth_event.dart';
+import 'features/calculator/presentation/pages/calculator_page.dart';
 import 'features/settings/presentation/cubit/theme_cubit.dart';
 import 'firebase_options.dart';
 import 'features/home/presentation/pages/home_page.dart';
@@ -81,6 +82,7 @@ class _MyAppState extends State<MyApp> {
                 routes: {
                   "/loginOrRegister": (context) => const LoginOrRegister(),
                   "/homePage": (context) => HomePage(),
+                  "/calculatorPage": (context) => const CalculatorPage(),
                   "/profilePage": (context) => ProfilePage(),
                   "/settingsPage": (context) => SettingsPage(),
                 },

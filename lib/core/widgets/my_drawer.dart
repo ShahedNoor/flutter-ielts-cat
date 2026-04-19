@@ -68,6 +68,19 @@ class MyDrawer extends StatelessWidget {
                   },
                 ),
               ),
+
+              // Calculator tile
+              Padding(
+                padding: const EdgeInsets.only(left: 25.0, right: 25),
+                child: ListTile(
+                  leading: const Icon(Icons.calculate),
+                  title: const Text("C A L C U L A T O R"),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/calculatorPage');
+                  },
+                ),
+              ),
             ],
           ),
 

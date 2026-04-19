@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ielts_cat/core/theme/ielts_colors.dart';
+import 'package:ielts_cat/core/widgets/my_drawer.dart';
 import 'package:ielts_cat/core/widgets/my_bottom_app_bar.dart';
 import 'package:ielts_cat/features/listening/presentation/pages/listening_page.dart';
 import 'package:ielts_cat/features/reading/presentation/pages/reading_page.dart';
@@ -10,15 +11,21 @@ import 'package:ielts_cat/features/writing/presentation/pages/writing_page.dart'
 import 'package:ielts_cat/features/home/presentation/cubit/home_cubit.dart';
 import 'package:ielts_cat/injection_container.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => getIt<HomeCubit>(),
       child: Scaffold(
         backgroundColor: IeltsColors.bg,
+        drawer: const MyDrawer(),
         body: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
             final pages = <Widget>[
@@ -56,12 +63,67 @@ class _HomeOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          floating: true,
+          snap: true,
+          pinned: false,
+          elevation: 0,
+          scrolledUnderElevation: 0,
+          backgroundColor: IeltsColors.surface.withOpacity(0.96),
+          surfaceTintColor: Colors.transparent,
+          titleSpacing: 0,
+          toolbarHeight: 64,
+          leading: Builder(
+            builder: (context) {
+              return IconButton(
+                onPressed: () => Scaffold.of(context).openDrawer(),
+                icon: const Icon(Icons.menu_rounded),
+                color: IeltsColors.ink,
+              );
+            },
+          ),
+          title: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'IELTS Cat',
+                style: GoogleFonts.fraunces(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w600,
+                  color: IeltsColors.ink,
+                ),
+              ),
+              Text(
+                'Smart practice, fast review',
+                style: GoogleFonts.dmSans(
+                  fontSize: 11,
+                  color: IeltsColors.inkSoft,
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.search_rounded),
+              color: IeltsColors.ink,
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.notifications_none_rounded),
+              color: IeltsColors.ink,
+            ),
+          ],
+        ),
+        SliverToBoxAdapter(
+          child: Column(
+            children: [
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.fromLTRB(24, 52, 24, 24),
+            padding: const EdgeInsets.fromLTRB(24, 28, 24, 24),
             decoration: const BoxDecoration(color: IeltsColors.ink),
             child: Stack(
               children: [
@@ -276,8 +338,10 @@ class _HomeOverview extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
-        ],
-      ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
