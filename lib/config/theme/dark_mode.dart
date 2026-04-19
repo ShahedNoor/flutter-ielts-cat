@@ -1,45 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:ielts_cat/core/theme/ielts_colors.dart';
 
 ThemeData darkMode = ThemeData(
-  brightness: Brightness.light,
-  scaffoldBackgroundColor: IeltsColors.bg,
-  colorScheme: const ColorScheme.light(
-    surface: IeltsColors.surface,
-    primary: IeltsColors.ink,
-    secondary: IeltsColors.accent,
-    background: IeltsColors.bg,
-    onSurface: IeltsColors.ink,
-    onPrimary: IeltsColors.bg,
-    onSecondary: IeltsColors.bg,
-    onBackground: IeltsColors.ink,
+  brightness: Brightness.dark,
+  colorScheme: ColorScheme.dark(
+    surface: Colors.grey.shade900,
+    primary: Colors.grey.shade800,
+    secondary: const Color.fromARGB(255, 66, 66, 66), // Inverted secondary
+    inversePrimary: Colors.grey.shade200,
   ),
-  textTheme: GoogleFonts.dmSansTextTheme().apply(
-    bodyColor: IeltsColors.ink,
-    displayColor: IeltsColors.ink,
+  textTheme: ThemeData.dark().textTheme.apply(
+    bodyColor: Colors.grey.shade200,
+    displayColor: Colors.white,
   ),
   inputDecorationTheme: InputDecorationTheme(
-    labelStyle: const TextStyle(color: IeltsColors.ink),
+    labelStyle: TextStyle(color: Colors.grey.shade200),
     enabledBorder: OutlineInputBorder(
-      borderSide: const BorderSide(color: IeltsColors.border),
+      borderSide: BorderSide(color: Colors.grey.shade400),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: const BorderSide(color: IeltsColors.ink),
+      borderSide: BorderSide(color: Colors.blueGrey.shade300),
     ),
-    hintStyle: const TextStyle(color: IeltsColors.inkSoft),
+    hintStyle: TextStyle(color: Colors.grey.shade400),
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    selectedItemColor: IeltsColors.ink,
-    unselectedItemColor: IeltsColors.inkSoft,
-    backgroundColor: IeltsColors.surface,
-    selectedLabelStyle: const TextStyle(color: IeltsColors.ink),
-    unselectedLabelStyle: const TextStyle(color: IeltsColors.inkSoft),
+    selectedItemColor: Colors.grey.shade200,
+    unselectedItemColor: Colors.grey.shade500,
+    backgroundColor: Colors.grey.shade900,
+    selectedLabelStyle: TextStyle(color: Colors.grey.shade200),
+    unselectedLabelStyle: TextStyle(color: Colors.grey.shade500),
   ),
   textSelectionTheme: TextSelectionThemeData(
-    cursorColor: IeltsColors.ink,
-    selectionColor: IeltsColors.border,
-    selectionHandleColor: IeltsColors.ink,
+    cursorColor: Colors.blueGrey.shade300, // Contrasts with grey.shade800
+    selectionColor: Colors.grey.shade600, // Lighter selection color
+    selectionHandleColor: Colors.blueGrey.shade300, // Matches cursor
   ),
-  dividerColor: IeltsColors.border,
 );
